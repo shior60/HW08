@@ -1,0 +1,129 @@
+:root{
+    --bg: #0f1226;
+    --text: #e7e8ee;
+    --x: #ff6b6b;
+    --o: #4dd0e1;
+    --win: #ffe066;
+}
+
+*{ box-sizing:border-box; }
+body{
+    margin:0;
+    font-family: 'Noto Sans TC', system-ui, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    padding:24px;
+}
+
+/* ==========================================
+   Layout
+========================================== */
+.container{
+    width:min(720px, 95%);
+    text-align:center;
+    animation: fadeIn 0.6s ease;
+}
+
+h1{
+    margin-bottom:16px;
+    font-size:28px;
+    letter-spacing:1px;
+}
+
+.status{ margin-bottom:14px; }
+
+/* ==========================================
+   棋盤
+========================================== */
+.board{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:12px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:14px;
+    border-radius:14px;
+    aspect-ratio:1;
+    margin-bottom:18px;
+}
+
+.cell{
+    border-radius:12px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    font-size:48px;
+    font-weight:800;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    transition: 0.2s;
+}
+
+.cell:hover{
+    background:rgba(255,255,255,0.12);
+    transform: translateY(-3px);
+}
+
+.cell.x{
+    color:var(--x);
+    animation: popIn 0.25s ease;
+}
+.cell.o{
+    color:var(--o);
+    animation: popIn 0.25s ease;
+}
+
+/* 勝利動畫 */
+.cell.win{
+    background:var(--win);
+    color:#000;
+    animation: glow 0.6s infinite alternate ease-in-out;
+}
+
+/* ==========================================
+   計分板
+========================================== */
+.scoreboard{
+    margin:14px 0;
+    padding:16px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(6px);
+    display:inline-block;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+button{
+    padding:10px 16px;
+    margin:6px;
+    border-radius:12px;
+    border:0;
+    background:#21264a;
+    color:var(--text);
+    cursor:pointer;
+    transition:0.2s;
+}
+button:hover{
+    background:#2e3560;
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   Animations
+========================================== */
+@keyframes popIn{
+    from{ opacity:0; transform:scale(0.6); }
+    to{ opacity:1; transform:scale(1); }
+}
+@keyframes glow{
+    from{ box-shadow:0 0 4px rgba(255,224,102,0.6); }
+    to{ box-shadow:0 0 14px rgba(255,224,102,1); }
+}
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
